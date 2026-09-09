@@ -40,6 +40,8 @@ fun ExpandingPlayer(
     isPlaying: Boolean,
     currentPosition: Long,
     duration: Long,
+    currentSpeed: Float,         // <-- ADD THIS
+    onSpeedCycle: () -> Unit,    // <-- ADD THIS
     onTogglePlay: () -> Unit,
     onNext: () -> Unit,
     onPrevious: () -> Unit,
@@ -210,6 +212,8 @@ fun ExpandingPlayer(
                                 isPlaying = isPlaying && pageIndex == pagerState.currentPage,
                                 currentPosition = currentPosition,
                                 duration = duration,
+                                currentSpeed = currentSpeed,   // <-- ADD THIS
+                                onSpeedCycle = onSpeedCycle,   // <-- ADD THIS
                                 onTogglePlay = onTogglePlay,
                                 onNext = onNext,
                                 onPrevious = onPrevious,

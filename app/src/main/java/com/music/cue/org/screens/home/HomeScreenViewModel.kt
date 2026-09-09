@@ -81,6 +81,9 @@ class HomeScreenViewModel(
     private val _duration = MutableStateFlow(0L)
     val duration: StateFlow<Long> = _duration.asStateFlow()
 
+    private val _currentSpeed = MutableStateFlow(1.0f)
+    val currentSpeed: StateFlow<Float> = _currentSpeed.asStateFlow()
+
     private var mediaController: MediaController? = null
     private var progressJob: Job? = null
 
@@ -331,6 +334,17 @@ class HomeScreenViewModel(
 
     fun previous() {
         mediaController?.seekToPrevious()
+    }
+
+    fun cyclePlaybackSpeed() {
+        val nextSpeed = when (_currentSpeed.value) {
+            0.5f -> 1.0f
+            1.0f -> 1.5f
+            1.5f -> 2.0f
+            else -> 0.5f
+        }
+        _currentSpeed.value = nextSpeed
+        mediaController?.setPlaybackSpeed(nextSpeed)
     }
 
     override fun onCleared() {

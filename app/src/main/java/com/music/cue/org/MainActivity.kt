@@ -77,6 +77,10 @@ class MainActivity : ComponentActivity() {
                     val currentPosition by homeScreenViewModel.currentPosition.collectAsState()
                     val duration by homeScreenViewModel.duration.collectAsState()
 
+                    // --- NEW CODE START ---
+                    val currentSpeed by homeScreenViewModel.currentSpeed.collectAsState()
+                    // --- NEW CODE END ---
+
                     Box(modifier = Modifier.fillMaxSize()) {
                         Scaffold(
                             modifier = Modifier.fillMaxSize()
@@ -105,6 +109,12 @@ class MainActivity : ComponentActivity() {
                                 isPlaying = isPlaying,
                                 currentPosition = currentPosition,
                                 duration = duration,
+
+                                // --- NEW CODE START ---
+                                currentSpeed = currentSpeed,
+                                onSpeedCycle = { homeScreenViewModel.cyclePlaybackSpeed() },
+                                // --- NEW CODE END ---
+
                                 onTogglePlay = { homeScreenViewModel.togglePlayPause() },
                                 onNext = { homeScreenViewModel.next() },
                                 onPrevious = { homeScreenViewModel.previous() },

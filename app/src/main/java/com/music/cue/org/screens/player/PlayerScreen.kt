@@ -57,6 +57,8 @@ fun PlayerScreen(
     isPlaying: Boolean,
     currentPosition: Long,
     duration: Long,
+    currentSpeed: Float,           // <-- ADD THIS
+    onSpeedCycle: () -> Unit,      // <-- ADD THIS
     onTogglePlay: () -> Unit,
     onNext: () -> Unit,
     onPrevious: () -> Unit,
@@ -206,6 +208,16 @@ fun PlayerScreen(
                             modifier = Modifier.size(48.dp)
                         )
                     }
+
+                    // --- NEW CODE START ---
+                    androidx.compose.material3.TextButton(onClick = onSpeedCycle) {
+                        Text(
+                            text = "${currentSpeed}x",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    // --- NEW CODE END ---
                 }
             }
         }

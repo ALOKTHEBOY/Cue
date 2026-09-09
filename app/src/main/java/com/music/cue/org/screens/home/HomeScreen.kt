@@ -137,6 +137,20 @@ fun HomeScreen(
                     ) {
                         when (currentTab) {
                             HomeTab.Songs -> {
+
+                                // --- NEW CODE START ---
+                                item(key = "song_count_header", contentType = "header") {
+                                    Text(
+                                        text = "${songsTab.size} Songs Discovered",
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 16.dp, vertical = 12.dp)
+                                    )
+                                }
+                                // --- NEW CODE END ---
+
                                 itemsIndexed(
                                     items = songsTab,
                                     key = { _, song -> song.id },

@@ -29,6 +29,8 @@ fun PlayerPageContent(
     isPlaying: Boolean,
     currentPosition: Long,
     duration: Long,
+    currentSpeed: Float,         // <-- ADD THIS
+    onSpeedCycle: () -> Unit,    // <-- ADD THIS
     onTogglePlay: () -> Unit,
     onNext: () -> Unit,
     onPrevious: () -> Unit,
@@ -109,6 +111,16 @@ fun PlayerPageContent(
             IconButton(onClick = onNext) {
                 Icon(CueIcons.SkipNext, null, tint = LocalContentColor.current)
             }
+
+            // --- NEW CODE START ---
+            TextButton(onClick = onSpeedCycle) {
+                Text(
+                    text = "${currentSpeed}x",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = LocalContentColor.current
+                )
+            }
+            // --- NEW CODE END ---
         }
 
         // Full Controls (Pinned in Player Screen)
